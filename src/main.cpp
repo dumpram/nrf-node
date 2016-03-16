@@ -4,6 +4,8 @@
 #include "retarget.h"
 #include "compatibility.h"
 #include "RF24.h"
+#include "adc.h"
+
 
 #define LED_GPIO (GPIO_TypeDef *) GPIOC
 #define LED_PIN GPIO_Pin_13
@@ -42,10 +44,12 @@ void LED_init() {
 int main() {
     LED_init();
     retarget_init();
+	adc_init();
     RF24 rf24(CE_NRF, CSN_NRF);
     setupRF(rf24);
     printf("Setup complete...\n\r");
-
+	char wet;
+	u16 test;
     while(1367) {
         if(GPIO_ReadInputDataBit(LED_GPIO, LED_PIN)) {
             GPIO_ResetBits(LED_GPIO, LED_PIN);
@@ -53,6 +57,10 @@ int main() {
             GPIO_SetBits(LED_GPIO, LED_PIN);
         }
         __msleep(500);
-        rf24.write(message, sizeof(char) * strlen(message));
+		
+		//test = readADC1(ADC_Channel_9);
+		wet = is_wet();	    
+		printf("Value is %c \r\n", wet);    
+		//rf24.write(&wet, sizeof(char));
     }
 }

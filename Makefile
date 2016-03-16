@@ -25,6 +25,7 @@ STD_PERIPH_SRC += $(STD_PERIPH_LIB)/src/stm32f10x_tim.c
 STD_PERIPH_SRC += $(STD_PERIPH_LIB)/src/stm32f10x_gpio.c
 STD_PERIPH_SRC += $(STD_PERIPH_LIB)/src/stm32f10x_rcc.c
 STD_PERIPH_SRC += $(STD_PERIPH_LIB)/src/stm32f10x_usart.c
+STD_PERIPH_SRC += $(STD_PERIPH_LIB)/src/stm32f10x_adc.c
 # Normally you shouldn't need to change anything below this line!
 ################################################################################
 
